@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<div>
+    <h1 class="text-center" title="yes, yes you can">Can you inject this form?</h1>
+    <div class="bg-info p-3 m-4"><p class="text-light m-0">"SELECT id FROM users where password='+hash(password)+' and
+        username='+username+' LIMIT 1" </p></div>
+    {% if msg %}
+    <p>MSG: {{ msg }}</p>
+    {% endif %}
+    <div class="d-flex flex-row justify-content-center">
+        <form action="/" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input class="form-control" id="username" name="username" type="text">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" id="password" name="password" type="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
