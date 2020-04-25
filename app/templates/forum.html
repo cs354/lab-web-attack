@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block content %}
+<div>
+    <div>
+        <h1 class="text-center" title="yes, yes you can">Welcome to the Forum: {{username}}</h1>
+    </div>
+    {% if error %}
+    <div class="alert alert-warning" role="alert">
+        {{error}}
+    </div>
+    {% endif %}
+    <div class="d-flex justify-content-center flex-row">
+        <button class="m-2 btn btn-primary" data-toggle="modal" data-target="#post_modal">Add Post</button>
+    </div>
+
+    <div class="d-flex flex-row justify-content-center">
+
+        <div class="d-flex flex-row flex-wrap justify-content-center">
+            {% for item in posts %}
+            <div class="m-2 pb-0 text-dark card" style="width: 18rem;">
+                <div class="card-body">
+
+                    <h5 class="card-title">{{item['title']}}</h5>
+                    <p class="card-text">{{item['content']|safe}}</p>
+                </div>
+
+                <div class="d-flex flex-row justify-content-between card-footer text-muted">
+                    <span class="mb-1 text-muted">Posted by {{item['username']}}</span>
+                    {% if item['username'] == username %}
+                    <form class="mb-0" action="/forum/{{item['id']}}/destroy" method="post">
+                        <button type='submit' href="" class="btn btn-secondary btn-sm">Delete</button>
+                    </form>
+                    {% endif %}
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="text-dark modal fade" id="post_modal" tabindex="-1" role="dialog" aria-labelledby="post_modal"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create a new post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="forum" method="post">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input class="form-control" id="title" name="title" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Content</label>
+                            <textarea class="form-control" id="content" name="content"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-end">
+                        <button type="button" class="ml-2 btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="ml-2 btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

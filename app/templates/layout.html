@@ -1,0 +1,39 @@
+<html>
+<head>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-grid.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-reboot.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="/static/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/bootstrap.min.js" ></script>
+    <script src="/static/js/popper.min.js"></script>
+</head>
+
+<style>
+    nav {
+        background-color: #222222;
+    }
+</style>
+<body class="bg-dark text-light">
+{% if username %}
+<nav class="navbar rk d-flex justify-content-center flex-row p-2">
+    <a class="ml-2 mr-2 float-left" href="/contact">Contact Us</a>
+    <a class="ml-2 mr-2 float-left" href="/forum">Forum</a>
+    <a class="ml-2 mr-2 float-right" href="/logout">Signout</a>
+</nav>
+{% endif %}
+{% if notice %}
+<div class="container p-4">
+    <div class="alert alert-light" role="alert">
+        {{ notice }}
+    </div>
+</div>
+{% endif %}
+<div class="container">
+    <div class="d-flex flex-row justify-content-center mt-4">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+</body>
+</html>
