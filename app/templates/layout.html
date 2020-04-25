@@ -1,6 +1,5 @@
 <html>
 <head>
-
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-grid.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-reboot.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
@@ -25,10 +24,17 @@
 {% endif %}
 {% if notice %}
 <div class="container p-4">
+<<<<<<< HEAD
     <div class="alert alert-light" role="alert">
         {{ notice }}
     </div>
 </div>
+=======
+<div class="alert alert-light" role="alert">
+  {{ notice }}
+</div>
+    </div>
+>>>>>>> 7e31c4bd4a75a26a7fe6acc0744746ffd7528a6d
 {% endif %}
 <div class="container">
     <div class="d-flex flex-row justify-content-center mt-4">
