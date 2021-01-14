@@ -50,7 +50,7 @@ start_attacker() {
     docker exec -it /bin/bash attacker-${id}
   else
     echo "Starting new attacker container"
-    docker run -it --rm --name attacker-${id} --network web-attack-lab-${id} cs354/student-env:latest
+    docker run -it --rm --name attacker-${id} --network bridge cs354/student-env:latest
   fi
 }
 
